@@ -11,7 +11,6 @@ import net.minecraft.server.command.ServerCommandSource;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.text.Text;
 import net.minecraft.util.Hand;
-import net.minheur.itemtanks.CommandRegister;
 import net.minheur.itemtanks.operations.IllegalTankItems;
 import net.minheur.itemtanks.operations.OperationResults;
 import net.minheur.itemtanks.operations.TankOperationHandler;
@@ -205,7 +204,7 @@ public final class TankCommands {
                                 return 1;
                             }))
 
-                            .then(literal("admin").requires(CommandRegister::isOpped)
+                            .then(literal("admin").requires(TankCommands::isOpped)
                                     .then(literal("adminGiveTank").then(argument("uuid", UuidArgumentType.uuid())
                                             .suggests(TANKS_SUGGESTIONS.get()).executes(source -> {
                                                 if (!(source.getSource().getEntity() instanceof ServerPlayerEntity user))
@@ -306,6 +305,11 @@ public final class TankCommands {
         TankOperationHandler.safeIncrement(tank, offHand, (stack) -> user.setStackInHand(Hand.OFF_HAND, stack));
 
         return 1;
+    }
+
+    private static boolean isOpped(ServerCommandSource source) {
+        if (!(source.getEntity() instanceof ServerPlayerEntity player)) return false;
+        return source.getServer().getPlayerManager().isOperator(player.getPlayerConfigEntry());
     }
 
 }
