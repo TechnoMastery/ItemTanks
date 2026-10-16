@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "id": "itemtanks",
+  "version": "${version}",
+  "name": "ItemTanks",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "MIT",
+  "icon": "assets/itemtanks/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.minheur.itemtanks.ItemsTanks"
+    ]
+  },
+  "mixins": [
+    "itemtanks.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric-api": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}

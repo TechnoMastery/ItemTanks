@@ -1,0 +1,65 @@
+package net.minheur.itemtanks.file;
+
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import net.fabricmc.loader.api.FabricLoader;
+
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.Reader;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.List;
+
+public final class ConfigHandler {
+    private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
+    private static final Path CONFIG_PATH = FabricLoader.getInstance().getConfigDir().resolve("itemsTanks.json");
+
+    private static ConfigData config;
+
+    public static void load() {
+        try {
+            if (!Files.exists(CONFIG_PATH))
+                createDefaultConfig();
+            else {
+                try (Reader reader = new FileReader(CONFIG_PATH.toFile())) {
+                    config = GSON.fromJson(reader, ConfigData.class);
+                    if (config == null)
+                        createDefaultConfig();
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            loadDefault();
+        }
+    }
+
+    public static void save() {
+        try (Writer writer = new FileWriter(CONFIG_PATH.toFile())) {
+            GSON.toJson(config, writer);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void loadDefault() {
+        config = new ConfigData();
+    }
+    private static void createDefaultConfig() {
+        loadDefault();
+        save();
+    }
+
+    public static ConfigData getConfig() {
+        return config;
+    }
+
+    public static class ConfigData {
+        // illegal tank
+        public final List<String> illegalTanksItems = List.of(
+                "minecraft:bedrock", "minecraft:barrier", "minecraft:command_block", "minecraft:structure_block",
+                "minecraft:chain_command_block", "minecraft:repeat_command_block"
+        );
+    }
+}
