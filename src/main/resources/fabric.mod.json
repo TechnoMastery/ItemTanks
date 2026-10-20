@@ -4,7 +4,7 @@
   "version": "${version}",
   "name": "ItemTanks",
   "description": "",
-  "authors": [],
+  "authors": ["Minheur2000"],
   "contact": {},
   "license": "MIT",
   "icon": "assets/itemtanks/icon.png",
