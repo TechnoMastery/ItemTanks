@@ -5,7 +5,10 @@
   "name": "ItemTanks",
   "description": "",
   "authors": ["Minheur2000"],
-  "contact": {},
+  "contact": {
+    "discord": "https://discord.gg/wCTcVnJFmx",
+    "sources": "https://github.com/TechnoMastery/ItemTanks"
+  },
   "license": "MIT",
   "icon": "assets/itemtanks/icon.png",
   "environment": "*",
