@@ -11,7 +11,7 @@
   },
   "license": "MIT",
   "icon": "assets/itemtanks/icon.png",
-  "environment": "*",
+  "environment": "server",
   "entrypoints": {
     "main": [
       "net.minheur.itemtanks.ItemsTanks"
