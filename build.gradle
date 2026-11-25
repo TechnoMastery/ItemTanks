@@ -86,7 +86,7 @@ jar {
 publishing {
     publications {
         create("mavenJava", MavenPublication) {
-            artifactId = "itemtanks"
+            artifactId = "itemtanks-fabric"
             from components.java
         }
     }
