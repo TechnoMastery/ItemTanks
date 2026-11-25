@@ -95,7 +95,7 @@ publishing {
     repositories {
         maven {
             name 'GitHubPackages'
-            url = uri("https://maven.pkg.github.com/TechnoMastery/ItemTanks")
+            url = uri("https://maven.pkg.github.com/TechnoMastery/ItemTanks-fabric")
             credentials {
                 username = project.findProperty("gpr.user")
                 password = project.findProperty("gpr.key")
